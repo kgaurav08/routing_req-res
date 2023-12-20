@@ -1,15 +1,20 @@
-const http = require('http');
-
+const http = require("http");
 const server = http.createServer((req, res) => {
-  // Log your name to the console when the server is accessed
-  console.log("Gaurav");
-
-  // Send a response to the browser
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello, your name has been logged!\n');
+    if(req.url == "/home"){
+        res.end("Welcome home");
+    }
+    else if(req.url == "/about"){
+        res.end("Welcome to About Us page"); 
+    }
+    else if(req.url == "/node"){
+        res.end("Welcome to my Node Js project"); 
+    }
+    else{
+        res.writeHead(404,{"content-type": "text/html"});
+        res.end("<h1>404 error page. page doesn't exist</h1>");
+    }
 });
 
-// Listen on port 4000
-server.listen(4000, '127.0.0.1', () => {
-  console.log('Server running at http://127.0.0.1:4000/');
+server.listen(8000, "127.0.0.1", () => {
+    console.log("listening to the port no 8000");
 });
